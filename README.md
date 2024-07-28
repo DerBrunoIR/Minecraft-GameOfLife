@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 ```
 As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represents a cell. 
 
-Let's encode dead pixels with `blackstone` blocks and alive pixels with `glowstone` blocks.
+Let's encode dead cells with `blackstone` blocks and alive cells with `glowstone` blocks.
 
 The only way to count something in Minecraft is by incrementing an entities (non player character) score .
 Behind each pixel block I summoned a `ItemFrame`. This entity can't move, can't despawn and is easy to place.
