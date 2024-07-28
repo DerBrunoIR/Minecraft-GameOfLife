@@ -34,9 +34,11 @@ As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represe
 
 Let's encode dead cells with `blackstone` blocks and alive cells with `glowstone` blocks.
 
-The only way to count something in Minecraft is by incrementing an entities (non player character) score .
-Behind each pixel block I summoned a `ItemFrame`. This entity can't move, can't despawn and is easy to place.
-In addition there is no obvious way to use scores outside of `if` conditions.
+The only way to count something in Minecraft is by incrementing an entities (non player character) score.
+However there is no obvious way to use a score of some entity outside of `if` conditions.
+
+Nevertheless behind each pixel block I summoned a `ItemFrame`. 
+This entity can't move, can't despawn and is easy to place.
 
 We have to be carful not to accidently damage those, without them the program will stop working.
 
