@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 
 ## requirements
 1. This project aims to build a "Game of Life" simulator by utilizing in game functionalities.
-2. `Command blocks` are used for programming.
+2. `command blocks` and `redstone` are used for programming.
 3. The simulation should be running in real time.
 4. It should be easy to increase the screen resolution.
 
