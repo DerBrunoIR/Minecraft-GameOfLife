@@ -54,7 +54,7 @@ By some NBT editing I made them both stick to the same position and disallowed t
 Now we have to implement the cell logic.
 
 To avoid numeric values as much as possible I took the following aproach by utilizing the `execute if` command:
-1. `yellow`: Init the **score** of the nearest `ItemFrame` zero. 
+1. `yellow`: Init the **score** of the nearest `ItemFrame` to zero. 
 2. `blue`: read the pixel block of all `8` neighbours and check individually if it is `glowstone`.
    
     If it is `glowstone` then increment the nearest `ItemFrame` **score**.
