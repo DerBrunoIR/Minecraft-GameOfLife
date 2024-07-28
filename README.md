@@ -1,6 +1,6 @@
 # Minecraft-GameOfLife
 
-This repository contains a implementation of Conway's "Game of Life" inside of Minecraft.
+This repository contains a implementation of Conway's "Game of Life" inside of Minecraft using command blocks.
 
 https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 
