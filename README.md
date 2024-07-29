@@ -51,7 +51,7 @@ By some NBT editing I made them both stick to the same position and disallowed t
 
 ![two_three](https://github.com/user-attachments/assets/c02f664d-c180-4aa7-882e-38841f6dc241)
 
-Now we have to implement the cell logic.
+Now we have to implement a pixel procedure that takes a pixel block and calculates the pixel block of the following frame.
 
 To avoid numeric values as much as possible I took the following aproach by utilizing the `execute if` command:
 1. `yellow`: Init the **score** of the nearest `ItemFrame` to zero. 
@@ -60,18 +60,17 @@ To avoid numeric values as much as possible I took the following aproach by util
     If it is `glowstone` then increment the nearest `ItemFrame` **score**.
    
 4. `blue`:
-    - If this pixel is alive and the `score` of the nearest `ItemFrame` is greater then the score of the `bat` with the name `Three`:
+    - If this pixel block is `glowstone` and the `score` of the nearest `ItemFrame` is greater then the score of the `bat` with the name `Three`:
   
       Replace the pixel block by `blackstone`.
-    - If this pixel is alive and the `score` of the nearest `ItemFrame` is less then the score of the `bat` with the name `Two`: 
+    - If this pixel block is `glowstone` and the `score` of the nearest `ItemFrame` is less then the score of the `bat` with the name `Two`: 
 
       Replace the pixel block by `blackstone`.
-    - If this pixel is dead and the `score` of the nearest `ItemFrame` is equal to the score of the `bat` with the name `Three`:
+    - If this pixel block is `blackstone` and the `score` of the nearest `ItemFrame` is equal to the score of the `bat` with the name `Three`:
   
       Replace the pixel block by `glowstone`.
    
-
-Now by triggering the first command block via redstone the execution of our command chain we can update the pixel block of a single cell.
+If the `red_wool` receives a redstone signal, the command chain will be executed and calculate the next pixel block.
 
 ![cell](https://github.com/user-attachments/assets/4972ce82-be88-4a60-ad73-dd13b212173f)
 
@@ -85,17 +84,17 @@ Implement the main loop.
 Let's press the play button.
 And, does it now work? 
 Yeah something is happing, but it looks weird. 
-Those `gliders` are not even gliding.
+Those `glider` structures are crashing on the runway.
 
 Well, I think somewhere I made a mistake...
 
-All relative block addressing seems to work, all hardcoded block addresses look right, in isolation a single pixle procedure fullfills it's job.
+All relative block addressing seems to work, all hardcoded block addresses look right, in isolation a single pixel procedure fullfilles it's task.
 - In what order does Minecraft acctually evaluate commands issued by some command block?
 - Do all command blocks really read the pixel blocks exactly in the same moment?
 What if one pixel procedure reads a pixel block after another one updated it. 
 
-Let's cache the previous frame somewhere instead of overwriting it.
-Then by reading from the cached frame this race conditions shouldn't appear.
+Let's cache the previous frame somewhere instead of overwriting it inplace.
+Then by reading from the cached frame this race conditions would be impossible.
 
 ![frames](https://github.com/user-attachments/assets/508d8e13-f942-42e6-822d-23950db3f063)
 
@@ -111,6 +110,3 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 
 We got a Game of Life simulation inside of Minecraft that's running in real time. 
 We can also scale the display by copying pixels and their procedures.
-
-It would be intresting to find the largest possible screen size Minecraft can deal with.
-But I'm looking towards programming with variables.
