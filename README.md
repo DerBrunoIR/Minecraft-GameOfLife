@@ -99,4 +99,4 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 We got a Game of Life simulation inside of Minecraft that's running in real time. 
 
 We can also scale the display by copying pixels and their procedures.
-Itemframes must be placed manuelly though.
+Itemframes and blocks of the inital screen must be placed manuelly though.
