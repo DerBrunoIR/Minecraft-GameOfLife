@@ -79,10 +79,10 @@ Well, I think somewhere I made a mistake...
 All relative block addressing seems to work, all hardcoded block addresses look right, in isolation a single pixel procedure fullfilles it's task.
 - In what order does Minecraft acctually evaluate commands issued by some command block?
 - Do all command blocks really read the pixel blocks exactly in the same moment?
-What if one pixel procedure reads a pixel block after another one updated it. 
-
+ 
+Hypothesis: one pixel procedure reads a pixel block after another one updated it. 
 Let's cache the previous frame somewhere instead of overwriting it inplace.
-Then by reading from the cached frame this race conditions would be impossible.
+Then by reading from the cached frame this race conditions will be impossible.
 
 ![frames](https://github.com/user-attachments/assets/508d8e13-f942-42e6-822d-23950db3f063)
 
