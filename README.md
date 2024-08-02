@@ -100,5 +100,3 @@ We got a Game of Life simulation inside of Minecraft that's running in real time
 
 We can also scale the display by copying pixels and their procedures.
 Itemframes must be placed manuelly though.
-
-And technically, this simulation is platform independent, since minecraft is running on the jvm. 
