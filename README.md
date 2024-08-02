@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 3. The simulation should be running in real time.
 4. It should be easy to increase the screen resolution.
 
-## How it works 
+## Implementation 
 
 As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represents a cell. 
 
