@@ -16,20 +16,8 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 3. The simulation should be running in real time.
 4. It should be easy to increase the screen resolution.
 
-## How the Game of Life works
-```
-  init all cells either dead or alive
-  for each cell:
-    count = number of living neighborus
-    if cell is alive:
-      if count = 3:
-        cell gets revived
-    else if cell is dead:
-      if count < 2:
-        cell dies
-      if count > 3:
-        cell dies
-```
+## How it works 
+
 As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represents a cell. 
 
 Let's encode dead cells with `blackstone` blocks and alive cells with `glowstone` blocks.
