@@ -5,7 +5,7 @@ This repository contains a implementation of Conway's "Game of Life" inside of M
 https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 
 # How to install
-- unzip `World.zip` and put `TheGangOfLife` directory into your minecraft worlds folder `saves`. 
+- unzip `World.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`. 
 
 
 # How it works
