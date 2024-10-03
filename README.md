@@ -7,16 +7,24 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 # How to install
 - unzip `World.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`. 
 
+# Features
+1. This project aims to build a "Game of Life" simulator by using `redstone` and `command blocks`.
+2. The simulation should be running in real time.
+3. It should be easy to increase the screen resolution.
 
-# How it works
+# How it works 
 
-## requirements
-1. This project aims to build a "Game of Life" simulator by utilizing in game functionalities.
-2. `command blocks` and `redstone` are used for programming.
-3. The simulation should be running in real time.
-4. It should be easy to increase the screen resolution.
 
-## Implementation 
+First we have to define how we represent a cell.
+Let's choose `glowstone` and `blackstone` blocks as representation for the states alive and dead.
+
+How can we determine if a cell is alive or dead?
+The command 
+
+
+
+
+
 
 As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represents a cell. 
 
