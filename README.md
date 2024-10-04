@@ -2,13 +2,12 @@
 
 After playing with recursion and command blocks for a while I challanged myself for implementing Conways Game of life inside a Minecraft (version 1.21.1) world by limiting myself to the ingame mechanics. 
 
-I was able to create a fluently running simulation on a 20x20 screen.
-
-It's possible to extend the screen by 
-Only `O(1)` effort is required to extend the screen by on cell.
+I was able to create a fluently running simulation on a 20x20 grid.
+The main feature is that the screen can be expanded without changing any logic inside any of the command blocks representing a single cell.
+This allows an easy expansion of the screen.
 
 # How to install
-- unzip `World.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`. 
+- unzip `TheGameOfLife.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`. 
 
 # How it works 
 
