@@ -86,13 +86,25 @@ Conviniently those rules are mutual exclusive.
 This allowes us to run those commands in sequence.
 
 
-   
-How to build a 20x20 screen with minimal effort.
-   relative addressing, cloning the prototype multiple times
+Now we can simulate a single cell.
+If we want to simulate multiple cells at once, we have to store the neighbour count individually at different places.
+Until now the counts from different cells are all stored in the scores of all players.
+The easiest way is to introduce for each cell a new entity, like the `ItemFrame`.
+The selector `@e[type=minecraft:item_frame,limit=1,sort=nearest]` selects the nearest `ItemFrame` from the position of execution.
+Relative to the command block position we can now also address different values inside the scoreboard.
 
-How to prevent race conditions.
-   By using two frames. A read frame and a write frame.
+Now extending the grid by one cell is easy.
+1. clone the command blocks
+2. init the cell state
+3. place the `ItemFrame`
 
+For the 20x20 screen automation seemed worthwhile.
+
+One issue is still not covered.
+Due to the parallel nature of cell computation reading and writing from the same grid leads to race conditions.
+A cell counting it neighbours would also count already updated neighbours.
+Using two grids can solve this concurrency issue.
+Therefore I copied the latest grid state to another location before cells can safely read it.
 
 
 As a screen we use `20` rows each containg `20` pixel blocks. Each pixel represents a cell. 
