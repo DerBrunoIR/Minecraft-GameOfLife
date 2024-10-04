@@ -54,7 +54,7 @@ execute if block ~[dx]   ~[dy-1] ~[dz] minecraft:glowstone run scoreboard player
 execute if block ~[dx+1] ~[dy-1] ~[zd] minecraft:glowstone run scoreboard players add @a count 1
 ```
 This looks more complicated, however it allows us to just copy those commands into multiple commands at different locations.
-We can therefore use the same command for counting neighbours for different cells.
+We can therefore use the same commands for counting neighbours for different cells.
 
 Next we discuess how to change the state of cells.
 
@@ -72,10 +72,20 @@ By simplifing the rules we get:
 Conveniently we can leverage the `execute` command again.
 This time however, we have to compare values. 
 Specifically values from the scoreboard `count` with `2` and `3`.
+As mentioned before, values can only be stored at the scoreboard.
+Therefore I created two entities holding the those specific values `2` and `3`.
+`@e[name=Two,limit=1]` addresses the bat holding the value `2`.
 
-`/execute if block [x] [y] [z] glowstone if score @a count < @e[name=Two,limit=1] count run setblock ~ ~ ~-14 minecraft:blackstone`
-`/execute if block [x] [y] [z] glowstone if score @acount > @e[name=Three,limit=1] count run setblock ~ ~ ~-15 minecraft:blackstone`
-`/execute if block [x] [y] [z] blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~ ~ ~-16 minecraft:glowstone`
+Now for a cell placed at offset (dx, dy, dz) we can implement the following rules:
+```
+execute if block ~[dx] ~[dy] ~[dz] glowstone if score @a count > @e[name=Three,limit=1] count run setblock ~[dx] ~[dy] ~[dz] minecraft:blackstone
+execute if block ~[dx] ~[dy] ~[dz] glowstone if score @a count < @e[name=Two,limit=1] count run setblock ~[dx] ~[dy] ~[dz] minecraft:blackstone
+execute if block ~[dx] ~[dy] ~[dz] blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~[dx] ~[dy] ~[dz] minecraft:glowstone
+```
+Conviniently those rules are mutual exclusive.
+This allowes us to run those commands in sequence.
+
+
    
 How to build a 20x20 screen with minimal effort.
    relative addressing, cloning the prototype multiple times
