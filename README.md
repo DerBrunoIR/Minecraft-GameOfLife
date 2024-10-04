@@ -1,28 +1,72 @@
 # Minecraft-GameOfLife
 
-This repository contains a implementation of Conway's "Game of Life" inside of Minecraft using command blocks.
+After playing with recursion and command blocks for a while I challanged myself for implementing Connways Game of life inside a Minecraft (version 1.21.1) world by limiting myself to command blocks and redstone. 
 
-https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
+The simulation should be running in real time and It should be possible to increase the screen resolution with reasonable effort.
 
 # How to install
 - unzip `World.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`. 
 
-# Features
-1. This project aims to build a "Game of Life" simulator by using `redstone` and `command blocks`.
-2. The simulation should be running in real time.
-3. It should be easy to increase the screen resolution.
-
 # How it works 
 
+Glowstone and blackstone are representing cells that are alive and dead.
+Those blocks are placed in a plane inside the minecraft world forming the world grid.
 
-First we have to define how we represent a cell.
-Let's choose `glowstone` and `blackstone` blocks as representation for the states alive and dead.
+We can check if the cell at position (x, y, z) is alive by using the following command:
+`execute if block x y z glowstone run say cell is alive`
+The `say` command is only execute if the if the block at (x, y, z) is glowstone.
 
-How can we determine if a cell is alive or dead?
-The command 
+`execute` can also be used for counting the number of living neighbours of a cell at position (x, y, z).
+After replacing all `[formula]` with specific values the following commands would be valid: 
+```
+scoreboard players set @a count 0
+execute if block [x-1] [y]   [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x-1] [y+1] [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x]   [y+1] [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x+1] [y+1] [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x-1] [y]   [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x-1] [y-1] [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x]   [y-1] [z] minecraft:glowstone run scoreboard players add @a count 1
+execute if block [x+1] [y-1] [z] minecraft:glowstone run scoreboard players add @a count 1
+```
+The only way to store values is by using the scoreboard.
+Therefore we created beforehand the scoarbard `count`.
+`@a` is a slector for all players.
+The first command initializes the count score for all players to `0`.
+The following commands are checking all sourrounding cells, if the checked cell is alive the score is increased by one.
+In the end the score is equal to the count of living neighbours of the given cell.
 
+Command blocks can execute those commands.
+However for larger screens it would be insane to hardcode all those coordinates by hand.
+Relative coordinates save the day.
+With `~dx ~dy ~dz` we can address blocks relativly from the current player position or command block position.
 
+By placing the neighbour counting commands blocks at specific relative offsets (dx,dy,dz) to the cell we can use the following commands:
+```
+scoreboard players set @a count
+execute if block ~[dx+1] ~[dy]   ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx-1] ~[dy+1] ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx]   ~[dy+1] ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx+1] ~[dy+1] ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx-1] ~[dy]   ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx-1] ~[dy-1] ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx]   ~[dy-1] ~[dz] minecraft:glowstone run scoreboard players add @a count 1
+execute if block ~[dx+1] ~[dy-1] ~[zd] minecraft:glowstone run scoreboard players add @a count 1
+```
+This looks more complicated, however it allows us to just copy those commands into multiple commands at different locations.
+We can therefore use the same command for counting neighbours for different cells.
 
+Next we have to discuess how we can update
+How to update cells.
+   `/execute if block ~ ~ ~-13 glowstone if score @a count < @e[name=Two,limit=1] count run setblock ~ ~ ~-14 minecraft:blackstone`
+   `/execute if block ~ ~ ~-14 glowstone if score @acount > @e[name=Three,limit=1] count run setblock ~ ~ ~-15 minecraft:blackstone`
+   `/execute if block ~ ~ ~-15 blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~ ~ ~-16 minecraft:glowstone`
+   
+How to build a 20x20 screen with minimal effort.
+   relative addressing, cloning the prototype multiple times
+
+How to prevent race conditions.
+   By using two frames. A read frame and a write frame.
 
 
 
