@@ -1,3 +1,5 @@
+https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
+
 # Minecraft-GameOfLife
 
 After playing with recursion and command blocks for a while I challanged myself for implementing Conways Game of life inside a Minecraft world by limiting myself to the ingame mechanics. 
@@ -138,9 +140,7 @@ Therefore I copied the latest grid state to another location before cells can sa
 
 # Conclusion
 
-https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
-
-The final simulation runs as presented fluently on the 20x20 screen.
+The final simulation runs fluently on the 20x20 screen.
 In the future it would be intresting to explore larger screen sizes.
 
 By sharing the world I want also to invite you to investigate it by your self.
