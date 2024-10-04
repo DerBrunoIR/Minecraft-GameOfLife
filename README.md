@@ -56,11 +56,26 @@ execute if block ~[dx+1] ~[dy-1] ~[zd] minecraft:glowstone run scoreboard player
 This looks more complicated, however it allows us to just copy those commands into multiple commands at different locations.
 We can therefore use the same command for counting neighbours for different cells.
 
-Next we have to discuess how we can update
-How to update cells.
-   `/execute if block ~ ~ ~-13 glowstone if score @a count < @e[name=Two,limit=1] count run setblock ~ ~ ~-14 minecraft:blackstone`
-   `/execute if block ~ ~ ~-14 glowstone if score @acount > @e[name=Three,limit=1] count run setblock ~ ~ ~-15 minecraft:blackstone`
-   `/execute if block ~ ~ ~-15 blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~ ~ ~-16 minecraft:glowstone`
+Next we discuess how to change the state of cells.
+
+The classic game of life obeys to the following rules:
+1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+2. Any live cell with two or three live neighbours lives on to the next generation.
+3. Any live cell with more than three live neighbours dies, as if by overpopulation.
+4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+
+By simplifing the rules we get:
+1. Any live cell with more than three neigbours dies.
+2. Any live cell with less than two neighbours dies.
+3. Any dead cell with exactly three neighbours rises from the dead.
+
+Conveniently we can leverage the `execute` command again.
+This time however, we have to compare values. 
+Specifically values from the scoreboard `count` with `2` and `3`.
+
+`/execute if block [x] [y] [z] glowstone if score @a count < @e[name=Two,limit=1] count run setblock ~ ~ ~-14 minecraft:blackstone`
+`/execute if block [x] [y] [z] glowstone if score @acount > @e[name=Three,limit=1] count run setblock ~ ~ ~-15 minecraft:blackstone`
+`/execute if block [x] [y] [z] blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~ ~ ~-16 minecraft:glowstone`
    
 How to build a 20x20 screen with minimal effort.
    relative addressing, cloning the prototype multiple times
