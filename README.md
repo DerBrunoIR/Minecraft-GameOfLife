@@ -2,9 +2,9 @@ https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
 
 # Minecraft-GameOfLife
 
-After playing with recursion and command blocks for a while I challanged myself for implementing Conways Game of life inside a Minecraft world by limiting myself to the ingame mechanics. 
+After experimenting with recursion inside of Minecraft I challanged myself to implement Conways Game of life with limiting myself to the game mechanics. 
 
-I was able to create a fluently running simulation on a 20x20 grid.
+In the end I was able to create a fluently running simulation on a 20x20 grid.
 The main feature is that the screen can be expanded without changing any logic inside any of the command blocks representing a single cell.
 This allows an easy expansion of the screen.
 
