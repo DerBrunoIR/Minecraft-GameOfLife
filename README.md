@@ -1,6 +1,6 @@
 # Minecraft-GameOfLife
 
-After playing with recursion and command blocks for a while I challanged myself for implementing Conways Game of life inside a Minecraft (version 1.21.1) world by limiting myself to command blocks and redstone. 
+After playing with recursion and command blocks for a while I challanged myself for implementing Conways Game of life inside a Minecraft (version 1.21.1) world by limiting myself to the ingame mechanics. 
 
 The simulation should be running in real time and It should be possible to increase the screen resolution with reasonable effort.
 
