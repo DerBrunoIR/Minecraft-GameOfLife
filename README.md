@@ -1,20 +1,21 @@
-https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328
+<https://github.com/user-attachments/assets/3c1f660e-a730-45d5-8e19-34b5d589c328>
 
 # Minecraft-GameOfLife
 
-After experimenting with recursion inside of Minecraft I challanged myself to implement Conways Game of life with limiting myself to the game mechanics. 
+After experimenting with recursion inside of Minecraft I challanged myself to implement Conways Game of life with limiting myself to the game mechanics.
 
 In the end I was able to create a fluently running simulation on a 20x20 grid.
 The main feature is that the screen can be expanded without changing any logic inside any of the command blocks representing a single cell.
 This allows an easy expansion of the screen.
 
-At the bottom is a video showing the `Pentadecathlon` configuration. 
+At the bottom is a video showing the `Pentadecathlon` configuration.
 
 # How to install
+
 - unzip `TheGameOfLife.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`.
 - join the World with Minecraft version 1.21.1
 
-# How it works 
+# How it works
 
 Glowstone and blackstone are representing cells that are alive and dead.
 Those blocks are placed in a plane inside the minecraft world forming the world grid.
@@ -25,9 +26,8 @@ We can check if the cell at position (x, y, z) is alive by using the following c
 
 The `say` command is only execute if the if the block at (x, y, z) is glowstone.
 
-
 `execute` can also be used for storing the number of living neighbours of a cell at position (x, y, z) into all player scores.
-After replacing all `[formula]` with their specific value the following commands would be valid: 
+After replacing all `[formula]` with their specific value the following commands would be valid:
 
 ```
 scoreboard players set @a count 0
@@ -46,7 +46,6 @@ The first command initializes the count score for all players to `0`.
 The following commands are checking all sourrounding cells, if the checked cell is alive the score is increased by one.
 
 In the end the score is equal to the count of living neighbours of the given cell.
-
 
 Command blocks can execute those commands.
 However for larger screens it would be insane to hardcode all those coordinates by hand.
@@ -71,22 +70,23 @@ execute if block ~[dx+1] ~[dy-1] ~[zd] minecraft:glowstone run scoreboard player
 This looks more complicated, however it allows us to just copy those commands into multiple commands at different locations.
 We can therefore use the same commands for counting neighbours for different cells.
 
-
 Next we discuess how to change the state of cells.
 
 The classic game of life obeys to the following rules:
+
 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
 2. Any live cell with two or three live neighbours lives on to the next generation.
 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
 
 By simplifing the rules we get:
+
 1. Any live cell with more than three neigbours dies.
 2. Any live cell with less than two neighbours dies.
 3. Any dead cell with exactly three neighbours rises from the dead.
 
 Conveniently we can leverage the `execute` command again.
-This time however, we have to compare values. 
+This time however, we have to compare values.
 Specifically the values `2` and `3`.
 As mentioned before, values can only be stored in the scoreboard.
 Therefore I created two entities holding the those specific values `2` and `3`.
@@ -121,6 +121,7 @@ Relative to the command block position we can now also address different values 
 ![itemframes](https://github.com/user-attachments/assets/1940732c-f6f0-44e9-9486-f0efcdda5b0c)
 
 Now extending the grid by one cell is easy.
+
 1. clone the command blocks
 2. init the cell state
 3. place the `ItemFrame`
@@ -136,7 +137,6 @@ Using two grids can solve this concurrency issue.
 Therefore I copied the latest grid state to another location before cells can safely read it.
 
 ![frames](https://github.com/user-attachments/assets/508d8e13-f942-42e6-822d-23950db3f063)
-
 
 # Conclusion
 
