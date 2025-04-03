@@ -2,13 +2,12 @@
 
 # Minecraft-GameOfLife
 
-After experimenting with recursion inside of Minecraft I challanged myself to implement Conways Game of life with limiting myself to the game mechanics.
+After experimenting with recursion using ingame mechanics of Minecraft I challanged myself to implement Conways Game of life.
 
 In the end I was able to create a fluently running simulation on a 20x20 grid.
-The main feature is that the screen can be expanded without changing any logic inside any of the command blocks representing a single cell.
-This allows an easy expansion of the screen.
+The main feature is that the screen can be expanded only with a small amount of effort.
 
-At the bottom is a video showing the `Pentadecathlon` configuration.
+At the top is a video showing the `Pentadecathlon` configuration.
 
 # How to install
 
