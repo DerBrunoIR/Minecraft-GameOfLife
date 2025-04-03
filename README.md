@@ -142,6 +142,6 @@ Therefore I copied the latest grid state to another location before cells can sa
 The final simulation runs fluently on the 20x20 screen.
 In the future it would be intresting to explore larger screen sizes.
 
-By sharing the world I want also to invite you to investigate it by your self.
+By sharing the world you can try it by your self.
 
 Thanks for reading!
