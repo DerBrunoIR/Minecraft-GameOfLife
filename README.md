@@ -2,31 +2,31 @@
 
 # Minecraft-GameOfLife
 
-After experimenting with recursion using command blocks in Minecraft I challanged myself to implement Conways Game of life.
+After experimenting with recursion using command blocks in Minecraft, I challenged myself to implement Conway's Game of life.
 
-In the end I was able to create a fluently running simulation on a 20x20 grid.
+In the end, I was able to create a smoothly running simulation on a 20x20 grid.
 A main feature is that the screen can be expanded only with a small amount of effort.
 
 At the top is a video showing the `Pentadecathlon` configuration.
 
 # How to install
 
-- unzip `TheGameOfLife.zip` and put `TheGameOfLife` directory into your minecraft worlds folder `saves`.
-- join the World with Minecraft version 1.21.1
+- unzip `TheGameOfLife.zip` and put `TheGameOfLife` directory into your Minecraft Worlds folder `saves`.
+- Join the World with Minecraft version 1.21.1
 
 # How it works
 
 Glowstone and blackstone are representing cells that are alive and dead.
-Those blocks are placed in a plane inside the minecraft world forming the world grid.
+Those blocks are placed in a plane inside the Minecraft world, forming the world grid.
 
 We can check if the cell at position (x, y, z) is alive by using the following command:
 
 `execute if block x y z glowstone run say cell is alive`.
 
-The `say` command is only execute if the if the block at (x, y, z) is glowstone.
+The `say` command is only executed if the block at (x, y, z) is glowstone.
 
-`execute` can also be used for storing the number of living neighbours of a cell at position (x, y, z) into all player scores.
-After replacing all `[formula]` with their specific value the following commands would be valid:
+`execute` can also be used for storing the number of living neighbors of a cell at position (x, y, z) into all player scores.
+After replacing all `[formula]` with their specific value, the following commands would be valid:
 
 ```
 scoreboard players set @a count 0
@@ -40,19 +40,19 @@ execute if block [x]   [y-1] [z] minecraft:glowstone run scoreboard players add 
 execute if block [x+1] [y-1] [z] minecraft:glowstone run scoreboard players add @a count 1
 ```
 
-`@a` is a slector for all players and `count` is a previously created scoreboard.
+`@a` is a selector for all players, and `count` is a previously created scoreboard.
 The first command initializes the count score for all players to `0`.
-The following commands are checking all sourrounding cells, if the checked cell is alive the score is increased by one.
+The following commands are checking all surrounding cells; if the checked cell is alive, the score is increased by one.
 
-In the end the score is equal to the count of living neighbours of the given cell.
+In the end, the score is equal to the count of living neighbors of the given cell.
 
 Command blocks can execute those commands.
-However for larger screens it would be insane to hardcode all those coordinates by hand.
+However, for larger screens, it would be insane to hardcode all those coordinates by hand.
 Relative coordinates save the day.
 
-With `~dx ~dy ~dz` we can address blocks relativly from the current player position or command block position.
+With `~dx ~dy ~dz` we can address blocks relatively from the current player position or command block position.
 
-By placing the neighbour counting commands blocks at specific relative offsets (dx,dy,dz) to the cell we can use the following commands:
+By placing the neighbor counting commands blocks at specific relative offsets (dx,dy,dz) to the cell, we can use the following commands:
 
 ```
 scoreboard players set @a count
