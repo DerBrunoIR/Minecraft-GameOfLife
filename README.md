@@ -66,29 +66,29 @@ execute if block ~[dx]   ~[dy-1] ~[dz] minecraft:glowstone run scoreboard player
 execute if block ~[dx+1] ~[dy-1] ~[zd] minecraft:glowstone run scoreboard players add @a count 1
 ```
 
-This looks more complicated, however it allows us to just copy those commands into multiple commands at different locations.
-We can therefore use the same commands for counting neighbours for different cells.
+This looks more complicated, however, it allows us to just copy those commands into multiple commands at different locations.
+We can therefore use the same commands for counting neighbors for different cells.
 
-Next we discuess how to change the state of cells.
+Next we discuss how to change the state of cells.
 
 The classic game of life obeys to the following rules:
 
-1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-2. Any live cell with two or three live neighbours lives on to the next generation.
-3. Any live cell with more than three live neighbours dies, as if by overpopulation.
-4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction
+1. Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+2. Any live cell with two or three live neighbors lives on to the next generation.
+3. Any live cell with more than three live neighbors dies, as if by overpopulation.
+4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction
 
-By simplifing the rules we get:
+By simplifying the rules, we get:
 
-1. Any live cell with more than three neigbours dies.
-2. Any live cell with less than two neighbours dies.
-3. Any dead cell with exactly three neighbours rises from the dead.
+1. Any live cell with more than three neighbors dies.
+2. Any live cell with less than two neighbors dies.
+3. Any dead cell with exactly three neighbors rises from the dead.
 
-Conveniently we can leverage the `execute` command again.
-This time however, we have to compare values.
-Specifically the values `2` and `3`.
+Conveniently, we can leverage the `execute` command again.
+This time, however, we have to compare values.
+Specifically, the values `2` and `3`.
 As mentioned before, values can only be stored in the scoreboard.
-Therefore I created two entities holding the those specific values `2` and `3`.
+Therefore, I created two entities holding the those specific values `2` and `3`.
 `@e[name=Two,limit=1]` addresses the bat holding the value `2`.
 
 ![two_three](https://github.com/user-attachments/assets/c02f664d-c180-4aa7-882e-38841f6dc241)
@@ -101,23 +101,23 @@ execute if block ~[dx] ~[dy] ~[dz] glowstone if score @a count < @e[name=Two,lim
 execute if block ~[dx] ~[dy] ~[dz] blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~[dx] ~[dy] ~[dz] minecraft:glowstone
 ```
 
-Conviniently those rules are mutual exclusive.
-This allowes us to run those commands in sequence.
+Conveniently, those rules are mutual exclusive.
+This allows us to run those commands in sequence.
 
 1. init scoreboard
-2. count live neighbours
+2. count live neighbors
 3. update cell
 
 ![command blocks](https://github.com/user-attachments/assets/4972ce82-be88-4a60-ad73-dd13b212173f)
 
 Now we can simulate a single cell.
-If we want to simulate multiple cells at once, we have to store the neighbour count individually at different places.
-Until now the counts from different cells are all stored in the scores of all players.
+If we want to simulate multiple cells at once, we have to store the neighbor count individually at different places.
+Until now, the counts from different cells are all stored in the scores of all players.
 The easiest way is to introduce for each cell a new entity, like the `ItemFrame`.
 The selector `@e[type=minecraft:item_frame,limit=1,sort=nearest]` selects the nearest `ItemFrame` from the position of execution.
-Relative to the command block position we can now also address different values inside the scoreboard.
+Relative to the command block position, we can now also address different values inside the scoreboard.
 
-![itemframes](https://github.com/user-attachments/assets/1940732c-f6f0-44e9-9486-f0efcdda5b0c)
+![Item frames](https://github.com/user-attachments/assets/1940732c-f6f0-44e9-9486-f0efcdda5b0c)
 
 Now extending the grid by one cell is easy.
 
@@ -125,23 +125,23 @@ Now extending the grid by one cell is easy.
 2. init the cell state
 3. place the `ItemFrame`
 
-For the 20x20 screen automation seemed worthwhile.
+For the 20x20 screen, automation seemed worthwhile.
 
 ![build_sytem](https://github.com/user-attachments/assets/7eb0baf7-caca-437e-b1c5-0093e53f5417)
 
 One issue is still not covered.
-Due to the parallel nature of cell computation reading and writing from the same grid leads to race conditions.
-A cell counting it neighbours would also count already updated neighbours.
+Due to the parallel nature of cell computation, reading and writing from the same grid leads to race conditions.
+A cell counting it neighbors would also count already updated neighbors.
 Using two grids can solve this concurrency issue.
-Therefore I copied the latest grid state to another location before cells can safely read it.
+Therefore, I copied the latest grid state to another location before cells can safely read it.
 
-![frames](https://github.com/user-attachments/assets/508d8e13-f942-42e6-822d-23950db3f063)
+![Frames](https://github.com/user-attachments/assets/508d8e13-f942-42e6-822d-23950db3f063)
 
 # Conclusion
 
 The final simulation runs fluently on the 20x20 screen.
-In the future it would be intresting to explore larger screen sizes.
+In the future, it would be interesting to explore larger screen sizes.
 
-By sharing the world you can try it by your self.
+By sharing the world, you can try it by your self.
 
 Thanks for reading!
