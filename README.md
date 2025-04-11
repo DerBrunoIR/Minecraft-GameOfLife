@@ -88,7 +88,7 @@ Conveniently, we can leverage the `execute` command again.
 This time, however, we have to compare values.
 Specifically, the values `2` and `3`.
 As mentioned before, values can only be stored in the scoreboard.
-Therefore, I created two entities holding the those specific values `2` and `3`.
+Therefore, I created two entities holding scoreboard values `2` and `3`.
 `@e[name=Two,limit=1]` addresses the bat holding the value `2`.
 
 ![two_three](https://github.com/user-attachments/assets/c02f664d-c180-4aa7-882e-38841f6dc241)
