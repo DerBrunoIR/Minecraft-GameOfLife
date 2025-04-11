@@ -19,12 +19,16 @@ At the top is a video showing the `Pentadecathlon` configuration.
 Glowstone and blackstone are representing cells that are alive and dead.
 Those blocks are placed in a plane inside the Minecraft world, forming the world grid.
 
+
+
 We can check if the cell at position (x, y, z) is alive by using the following command:
 
 `execute if block x y z glowstone run say cell is alive`.
 
 The `say` command is only executed if the block at (x, y, z) is glowstone.
 
+For counting dead and alive neighbors, we need some kind of variable. 
+The easiest way to store numbers are the scoreboards of the game. 
 `execute` can also be used for storing the number of living neighbors of a cell at position (x, y, z) into all player scores.
 After replacing all `[formula]` with their specific value, the following commands would be valid:
 
@@ -87,7 +91,6 @@ By simplifying the rules, we get:
 Conveniently, we can leverage the `execute` command again.
 This time, however, we have to compare values.
 Specifically, the values `2` and `3`.
-As mentioned before, values can only be stored in the scoreboard.
 Therefore, I created two entities holding scoreboard values `2` and `3`.
 `@e[name=Two,limit=1]` addresses the bat holding the value `2`.
 
