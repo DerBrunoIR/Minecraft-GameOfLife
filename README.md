@@ -104,8 +104,8 @@ execute if block ~[dx] ~[dy] ~[dz] glowstone if score @a count < @e[name=Two,lim
 execute if block ~[dx] ~[dy] ~[dz] blackstone if score @a count = @e[name=Three,limit=1] count run setblock ~[dx] ~[dy] ~[dz] minecraft:glowstone
 ```
 
-Conveniently, those rules are mutual exclusive.
-This allows us to run those commands in sequence.
+Those conditions are mutual exclusive.
+This allows us to run those commands in sequence without any branching.
 
 1. init scoreboard
 2. count live neighbors
