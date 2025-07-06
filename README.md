@@ -5,7 +5,7 @@
 After experimenting with recursion using command blocks in Minecraft, I challenged myself to implement Conway's Game of life.
 
 In the end, I was able to create a smoothly running simulation on a 20x20 grid.
-A main feature is that the screen can be expanded only with a small amount of effort.
+A main feature is that the screen can be expanded only with a small constant amount of effort per pixel.
 
 At the top is a video showing the `Pentadecathlon` configuration.
 
