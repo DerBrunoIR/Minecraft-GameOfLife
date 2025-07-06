@@ -89,10 +89,10 @@ By simplifying the rules, we get:
 3. Any dead cell with exactly three neighbors rises from the dead.
 
 Conveniently, we can leverage the `execute` command again.
-This time, however, we have to compare values.
+This time, however, we have to compare to values.
 Specifically, the values `2` and `3`.
 Therefore, I created two entities holding scoreboard values `2` and `3`.
-`@e[name=Two,limit=1]` addresses the bat holding the value `2`.
+`@e[name=Two,limit=1]` can addresses a bat holding the value `2` in its score.
 
 ![two_three](https://github.com/user-attachments/assets/c02f664d-c180-4aa7-882e-38841f6dc241)
 
