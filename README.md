@@ -117,8 +117,7 @@ Now we can simulate a single cell.
 If we want to simulate multiple cells at once, we have to store the neighbor count individually at different places.
 Until now, the counts from different cells are all stored in the scores of all players.
 The easiest way is to introduce for each cell a new entity, like a `ItemFrame`.
-This entity can't move by default, can be placed like a block and doesn't despawn, but it can easily destroyed if a player missclicks.
-Therefore we have to be carfull. 
+This entity can't move by default, can be placed like a block and doesn't despawn.
 The selector `@e[type=minecraft:item_frame,limit=1,sort=nearest]` selects the nearest `ItemFrame` from the position of execution.
 Relative to the command block position, we can now also address different values inside the scoreboard.
 
